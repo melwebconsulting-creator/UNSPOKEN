@@ -1,0 +1,6 @@
+{
+  "name": "UNSPOKEN",
+  "description": "A place where hearts find words. Release painful thoughts anonymously, share confessions, ask for advice, and find comfort.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

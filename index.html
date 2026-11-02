@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNSPOKEN — A place where hearts find words</title>
+  <meta name="description" content="A magical online sanctuary where you can release painful thoughts anonymously, ask for advice, write letters you will never send, and find comfort in kind words." />
+  <meta property="og:title" content="UNSPOKEN — A place where hearts find words" />
+  <meta property="og:description" content="Say what you cannot say. Release what you cannot carry. Find comfort in words from people who understand." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif) & Plus Jakarta Sans (Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Relative stylesheet reference for GitHub Pages -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Supabase official browser client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.48.1/dist/umd/supabase.min.js"></script>
+
+  <!-- Relative JavaScript reference -->
+  <script src="./script.js" defer></script>
+</head>
+<body>
+
+  <!-- Sky Backdrop with Dynamic Starfield & Drifting Clouds -->
+  <div class="sky-backdrop" aria-hidden="true">
+    <canvas id="stars-canvas"></canvas>
+    <div class="crescent-moon"></div>
+    <div class="cloud-layer">
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+    </div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Bar Contract -->
+    <header class="top-nav">
+      <div class="container nav-inner">
+        <!-- Zone 1: Single text element Brand -->
+        <a href="#hero" class="nav-brand" aria-label="UNSPOKEN Home">
+          <span class="moon-glyph" aria-hidden="true">☾</span>
+          <span>UNSPOKEN</span>
+        </a>
+
+        <!-- Zone 2: Navigation Links -->
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-links">
+            <li><a href="#release" class="nav-link">Release Words</a></li>
+            <li><a href="#clouds" class="nav-link">Letters in Clouds</a></li>
+            <li><a href="#advice" class="nav-link">Advice Corner</a></li>
+            <li><a href="#unspoken-letters" class="nav-link">Letters Never Sent</a></li>
+            <li><a href="#comfort" class="nav-link">Comfort</a></li>
+            <li><a href="#garden" class="nav-link">Healing Garden</a></li>
+            <li><a href="#companion" class="nav-link">Talk It Out</a></li>
+          </ul>
+        </nav>
+
+        <!-- Zone 3: Backend Status & Primary CTA -->
+        <div class="nav-actions">
+          <button id="backend-status-btn" class="backend-status-btn" aria-label="View Supabase backend connection status" title="Click to view backend connection details">
+            <span id="backend-status-dot" class="status-dot demo" aria-hidden="true"></span>
+            <span id="backend-status-text">Checking...</span>
+          </button>
+          <a href="#release" class="btn btn-primary btn-sm">Release</a>
+          <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile Navigation">
+      <a href="#release" class="nav-link">Release Your Words</a>
+      <a href="#clouds" class="nav-link">Letters in the Clouds</a>
+      <a href="#checkin" class="nav-link">Daily Emotional Check-In</a>
+      <a href="#advice" class="nav-link">Advice Corner</a>
+      <a href="#unspoken-letters" class="nav-link">Letters Never Sent</a>
+      <a href="#comfort" class="nav-link">Words You Need Today</a>
+      <a href="#garden" class="nav-link">Healing Garden</a>
+      <a href="#kindness" class="nav-link">Kindness Wall</a>
+      <a href="#companion" class="nav-link">Talk It Out (AI)</a>
+      <a href="#about" class="nav-link">About UNSPOKEN</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+      <!-- HERO SECTION -->
+      <section id="hero" class="hero-section">
+        <div class="container hero-content">
+          <p class="hero-tagline-kicker">A place where hearts find words</p>
+          <h1 class="hero-headline">Some words are too heavy to keep inside.</h1>
+          <p class="hero-description">
+            Here, you can let them go. Share your thoughts anonymously, ask for advice, or leave a little kindness for someone who needs it.
+          </p>
+          <p class="hero-comfort-quote">“You don’t have to pretend you’re okay here.”</p>
+          <div class="hero-cta-group">
+            <a href="#release" class="btn btn-primary">Release My Words</a>
+            <a href="#advice" class="btn btn-secondary">I Need Advice</a>
+          </div>
+
+          <div class="hero-ribbon">
+            <a href="#clouds"><span>☁</span> <span>Read community letters</span></a>
+            <span aria-hidden="true">·</span>
+            <a href="#checkin"><span>♡</span> <span>Daily heart check-in</span></a>
+            <span aria-hidden="true">·</span>
+            <a href="#companion"><span>🕊</span> <span>Gentle companion</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: RELEASE YOUR WORDS -->
+      <section id="release" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Release Your Words</span>
+            <h2 class="section-title">Whatever is weighing on your heart, you can leave it here.</h2>
+            <p class="section-description">
+              No names, no profiles, and no judgment. Speak freely to the night sky.
+            </p>
+          </div>
+
+          <div class="glass-card">
+            <form id="release-form">
+              <div class="form-group">
+                <label for="release-message" class="form-label">Your Unspoken Words</label>
+                <textarea id="release-message" class="form-textarea" placeholder="Pour your heart out here... say what you have held inside for days, months, or years." required maxlength="1500"></textarea>
+                <div class="char-counter" id="release-char-count">0 / 1500</div>
+              </div>
+
+              <div class="form-group">
+                <label for="release-category" class="form-label">Category</label>
+                <select id="release-category" class="form-select">
+                  <option value="Heartbreak">Heartbreak</option>
+                  <option value="Loneliness">Loneliness</option>
+                  <option value="Friendship">Friendship</option>
+                  <option value="Family">Family</option>
+                  <option value="Anger">Anger</option>
+                  <option value="Regrets">Regrets</option>
+                  <option value="Stress">Stress</option>
+                  <option value="Personal struggles">Personal struggles</option>
+                  <option value="Things I cannot explain" selected>Things I cannot explain</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Privacy Selector: PRIVATE SELECTED BY DEFAULT -->
+              <div class="form-group">
+                <label class="form-label">Privacy Choice</label>
+                <div class="privacy-selector">
+                  <label class="privacy-option active">
+                    <input type="radio" name="release-privacy" value="private" checked />
+                    <span class="privacy-title">Keep my message private</span>
+                    <span class="privacy-desc">Saved only into your private space. Nobody else will ever read this.</span>
+                  </label>
+
+                  <label class="privacy-option">
+                    <input type="radio" name="release-privacy" value="public" />
+                    <span class="privacy-title">Share anonymously with community</span>
+                    <span class="privacy-desc">Will undergo gentle review before joining the Letters in the Clouds wall.</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Public consent checkbox (active only if public selected) -->
+              <div id="public-consent-box" class="consent-box disabled">
+                <input type="checkbox" id="public-consent-checkbox" disabled />
+                <label for="public-consent-checkbox" class="consent-text">
+                  I understand that public letters undergo review to keep our space safe and supportive, and will be visible anonymously to everyone.
+                </label>
+              </div>
+
+              <button type="submit" id="release-submit-btn" class="btn btn-primary" style="width: 100%;">
+                <span>Release My Letter ♡</span>
+              </button>
+
+              <div id="release-status-container" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: LETTERS IN THE CLOUDS -->
+      <section id="clouds" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Letters in the Clouds</span>
+            <h2 class="section-title">Every floating letter carries a story. Every story deserves kindness.</h2>
+            <p class="section-description">
+              Read whispers from people who share this world with you. Send a heart or a virtual hug to let them know they are heard.
+            </p>
+          </div>
+
+          <div class="wall-controls">
+            <div class="wall-search-box">
+              <span class="wall-search-icon" aria-hidden="true">🔍</span>
+              <input type="search" id="wall-search-input" class="wall-search-input" placeholder="Search letters by feeling, keyword, or memory..." aria-label="Search community letters" />
+            </div>
+
+            <!-- Segmented Filter Controls -->
+            <div class="filter-tabs" role="tablist" aria-label="Letter category filters">
+              <button class="filter-btn active" data-category="all">All Letters</button>
+              <button class="filter-btn" data-category="Heartbreak">Heartbreak</button>
+              <button class="filter-btn" data-category="Loneliness">Loneliness</button>
+              <button class="filter-btn" data-category="Friendship">Friendship</button>
+              <button class="filter-btn" data-category="Family">Family</button>
+              <button class="filter-btn" data-category="Stress">Stress</button>
+              <button class="filter-btn" data-category="Personal struggles">Personal struggles</button>
+              <button class="filter-btn" data-category="Things I cannot explain">Unexplained</button>
+            </div>
+          </div>
+
+          <div id="letters-wall-grid" class="letters-grid" aria-live="polite">
+            <!-- Dynamic letters rendered safely here -->
+          </div>
+
+          <div style="text-align: center;">
+            <button id="load-more-letters-btn" class="btn btn-secondary">Load More Letters</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: DAILY EMOTIONAL CHECK-IN -->
+      <section id="checkin" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Daily Sanctuary</span>
+            <h2 class="section-title">How Is Your Heart Today?</h2>
+            <p class="section-description">
+              Tap the emotion that feels truest right now. Your check-in is private and strictly kept on your device.
+            </p>
+          </div>
+
+          <div class="glass-card checkin-container">
+            <div class="mood-grid" role="group" aria-label="Select your current emotional state">
+              <button class="mood-btn" data-mood="Happy">
+                <span class="mood-emoji" aria-hidden="true">✨</span>
+                <span class="mood-label">Happy</span>
+              </button>
+              <button class="mood-btn" data-mood="Peaceful">
+                <span class="mood-emoji" aria-hidden="true">🌿</span>
+                <span class="mood-label">Peaceful</span>
+              </button>
+              <button class="mood-btn" data-mood="Okay">
+                <span class="mood-emoji" aria-hidden="true">☁</span>
+                <span class="mood-label">Okay</span>
+              </button>
+              <button class="mood-btn" data-mood="Tired">
+                <span class="mood-emoji" aria-hidden="true">🌙</span>
+                <span class="mood-label">Tired</span>
+              </button>
+              <button class="mood-btn" data-mood="Anxious">
+                <span class="mood-emoji" aria-hidden="true">🍂</span>
+                <span class="mood-label">Anxious</span>
+              </button>
+              <button class="mood-btn" data-mood="Lonely">
+                <span class="mood-emoji" aria-hidden="true">🕯</span>
+                <span class="mood-label">Lonely</span>
+              </button>
+              <button class="mood-btn" data-mood="Sad">
+                <span class="mood-emoji" aria-hidden="true">🌧</span>
+                <span class="mood-label">Sad</span>
+              </button>
+              <button class="mood-btn" data-mood="Overwhelmed">
+                <span class="mood-emoji" aria-hidden="true">🌊</span>
+                <span class="mood-label">Overwhelmed</span>
+              </button>
+              <button class="mood-btn" data-mood="Confused">
+                <span class="mood-emoji" aria-hidden="true">🌫</span>
+                <span class="mood-label">Confused</span>
+              </button>
+            </div>
+
+            <!-- Custom Mood Response Card -->
+            <div id="mood-response-card" class="mood-response-card" aria-live="polite">
+              <h3 id="mood-response-title" class="mood-response-title"></h3>
+              <p id="mood-response-text" class="mood-response-text"></p>
+
+              <!-- Interactive 4-4-4 Box Breathing Exercise -->
+              <div class="breathing-box">
+                <p class="breathing-title">4-4-4 Grounding Breath</p>
+                <div class="breathing-circle-wrap">
+                  <div id="breathing-circle" class="breathing-circle">
+                    <span>Breathe</span>
+                  </div>
+                </div>
+                <p id="breathing-cue" class="breathing-cue">Take a calm moment whenever you need.</p>
+                <button id="breath-toggle-btn" class="btn btn-secondary btn-sm">Start Breathing Exercise</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: ADVICE CORNER -->
+      <section id="advice" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Advice Corner</span>
+            <h2 class="section-title">Sometimes we don’t need someone to fix everything. We just need someone who listens.</h2>
+            <p class="section-description">
+              Ask for gentle perspectives, or offer compassionate advice to someone navigating a difficult chapter.
+            </p>
+          </div>
+
+          <div class="advice-disclaimer">
+            <span>🕊</span>
+            <span><strong>Gentle note:</strong> Advice comes from fellow visitors, not professional counselors. Take what helps, and leave what doesn't.</span>
+          </div>
+
+          <!-- Advice Request Form -->
+          <div class="glass-card" style="margin-bottom: 40px;">
+            <h3 style="font-family: var(--font-serif); font-size: 21px; margin-bottom: 16px; color: var(--color-cloud-white);">Ask for Anonymous Guidance</h3>
+            <form id="advice-request-form">
+              <div class="form-group">
+                <label for="advice-situation" class="form-label">What’s happening?</label>
+                <textarea id="advice-situation" class="form-textarea" placeholder="Explain your dilemma or situation honestly..." required minlength="15"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="advice-need" class="form-label">What kind of advice do you need?</label>
+                <input type="text" id="advice-need" class="form-input" placeholder="e.g. Perspective on how to communicate, tough love, reassurance..." />
+              </div>
+
+              <div class="form-group">
+                <label for="advice-category" class="form-label">Category</label>
+                <select id="advice-category" class="form-select">
+                  <option value="Relationships">Relationships</option>
+                  <option value="Love">Love</option>
+                  <option value="Friendship">Friendship</option>
+                  <option value="Family">Family</option>
+                  <option value="Career">Career</option>
+                  <option value="School">School</option>
+                  <option value="Self-confidence">Self-confidence</option>
+                  <option value="Personal growth">Personal growth</option>
+                  <option value="Life decisions" selected>Life decisions</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <button type="submit" id="advice-submit-btn" class="btn btn-primary" style="width: 100%;">
+                <span>Ask for Advice ♡</span>
+              </button>
+
+              <div id="advice-status-container" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- Approved Community Advice Posts -->
+          <div id="advice-posts-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: LETTERS NEVER SENT -->
+      <section id="unspoken-letters" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Letters Never Sent</span>
+            <h2 class="section-title">Some letters are meant for the heart, not the mailbox.</h2>
+            <p class="section-description">
+              Write to someone you cannot reach, someone who hurt you, or your younger self. Keep it in your private archive or burn it into the night.
+            </p>
+          </div>
+
+          <div class="glass-card">
+            <!-- Recipient Selectors -->
+            <p class="form-label">Who is this letter for?</p>
+            <div class="recipient-pills" role="group" aria-label="Select letter recipient">
+              <button class="recipient-btn active" data-recipient="Someone I miss">Someone I miss</button>
+              <button class="recipient-btn" data-recipient="Someone who hurt me">Someone who hurt me</button>
+              <button class="recipient-btn" data-recipient="My younger self">My younger self</button>
+              <button class="recipient-btn" data-recipient="My future self">My future self</button>
+              <button class="recipient-btn" data-recipient="Someone I never got to say goodbye to">Never said goodbye to</button>
+              <button class="recipient-btn" data-recipient="Myself">Myself</button>
+            </div>
+
+            <!-- Parchment Paper Canvas -->
+            <div id="unspoken-sheet" class="parchment-sheet">
+              <input type="text" id="unspoken-recipient-input" class="parchment-input" value="Dear Someone I miss," aria-label="Letter salutation" />
+              <textarea id="unspoken-body" class="parchment-textarea" placeholder="Write everything you never got the chance to say out loud..."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap;">
+              <button id="unspoken-save-btn" class="btn btn-primary" style="flex: 1;">
+                <span>Save to My Private Archive</span>
+              </button>
+              <button id="unspoken-burn-btn" class="btn btn-secondary" style="flex: 1;">
+                <span>Burn & Let Go 🔥</span>
+              </button>
+            </div>
+
+            <div style="text-align: center; margin-top: 18px;">
+              <button id="view-archive-btn" class="btn-icon" style="padding: 8px 18px; font-size: 13px;">
+                <span>Open My Private Archive (<span id="archive-count-badge">0</span>)</span>
+              </button>
+            </div>
+
+            <div id="unspoken-status" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: WORDS YOU NEED TODAY -->
+      <section id="comfort" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Words of Comfort</span>
+            <h2 class="section-title">Words You Need Today</h2>
+            <p class="section-description">
+              Gentle reminders for weary hearts. Tap the button whenever you need a whisper of grace.
+            </p>
+          </div>
+
+          <div class="comfort-display-card">
+            <div class="comfort-quote-mark" aria-hidden="true">“</div>
+            <p id="comfort-quote-text" class="comfort-quote-text" aria-live="polite">
+              “You are allowed to have difficult days.”
+            </p>
+
+            <div class="comfort-controls">
+              <button id="next-comfort-btn" class="btn btn-primary">
+                <span>Give Me a Little Reminder ✨</span>
+              </button>
+              <button id="copy-comfort-btn" class="btn btn-secondary">
+                <span>Copy Reminder</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: HEALING GARDEN -->
+      <section id="garden" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">The Healing Meadow</span>
+            <h2 class="section-title">Small Steps Still Count.</h2>
+            <p class="section-description">
+              A magical sanctuary where small victories, moments of gratitude, and quiet survival bloom into glowing blossoms.
+            </p>
+          </div>
+
+          <!-- Garden Canvas -->
+          <div class="garden-canvas-wrap">
+            <canvas id="garden-canvas" aria-label="Interactive healing garden meadow. Click flowers to read reflections."></canvas>
+            <div class="garden-overlay-hint">Click any blooming flower to read a quiet victory</div>
+          </div>
+
+          <!-- Seed Submission Form -->
+          <div class="glass-card section-narrow">
+            <h3 style="font-family: var(--font-serif); font-size: 21px; margin-bottom: 14px; color: var(--color-cloud-white);">Plant a Seed in the Garden</h3>
+            <form id="garden-seed-form" style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <select id="garden-category" class="form-select" style="flex: 1; min-width: 200px;">
+                <option value="Something I'm grateful for">Something I'm grateful for</option>
+                <option value="Something I survived">Something I survived</option>
+                <option value="Something I'm proud of">Something I'm proud of</option>
+                <option value="A small victory" selected>A small victory</option>
+                <option value="Something I'm looking forward to">Looking forward to</option>
+              </select>
+              <input type="text" id="garden-text" class="form-input" style="flex: 2; min-width: 240px;" placeholder="e.g. Got out of bed, drank water, forgave myself..." required />
+              <button type="submit" id="garden-submit-btn" class="btn btn-primary" style="flex-shrink: 0;">Plant Seed 🌸</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: COMMUNITY KINDNESS WALL -->
+      <section id="kindness" class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Kindness Wall</span>
+            <h2 class="section-title">Leave a Little Kindness</h2>
+            <p class="section-description">
+              Leave an anonymous spark of gentle warmth for a stranger who might be holding back tears right now.
+            </p>
+          </div>
+
+          <!-- Kindness Form -->
+          <div class="glass-card section-narrow" style="margin-bottom: 36px;">
+            <form id="kindness-form">
+              <div class="form-group">
+                <label for="kindness-message-input" class="form-label">Message of Encouragement</label>
+                <textarea id="kindness-message-input" class="form-textarea" style="min-height: 90px;" placeholder="Write a gentle sentence for whoever needs it today..." maxlength="280" required></textarea>
+              </div>
+              <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+                <input type="text" id="kindness-sig-input" class="form-input" style="flex: 1; min-width: 200px;" placeholder="Signature (e.g. A midnight friend, Someone who cares)" />
+                <button type="submit" id="kindness-submit-btn" class="btn btn-primary" style="flex-shrink: 0;">Leave Kindness ♡</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Kindness Grid -->
+          <div id="kindness-grid" class="letters-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: TALK IT OUT (AI COMPANION) -->
+      <section id="companion" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Sanctuary Companion</span>
+            <h2 class="section-title">Talk It Out</h2>
+            <p class="section-description">
+              You don’t always need answers. Sometimes you just need to be heard.
+            </p>
+          </div>
+
+          <!-- Crisis safety trigger container -->
+          <div id="companion-crisis-banner" class="crisis-lifeline-banner" style="display: none;" role="alert">
+            <p><strong>You are not alone, and you do not have to carry this alone.</strong></p>
+            <p>If you or someone you know is in crisis or considering self-harm, please reach out right now:</p>
+            <p style="margin-top: 6px;">
+              • United States: Call or text <a href="tel:988">988</a> (988 Suicide &amp; Crisis Lifeline)<br />
+              • Crisis Text Line: Text <strong>HOME</strong> to <a href="sms:741741">741741</a><br />
+              • International: Visit <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer">findahelpline.com</a> or <a href="https://www.befrienders.org" target="_blank" rel="noopener noreferrer">befrienders.org</a>
+            </p>
+          </div>
+
+          <div class="companion-wrapper">
+            <!-- Intent Selectors -->
+            <div class="companion-intents" role="group" aria-label="Suggested conversation topics">
+              <button class="intent-chip">I just want someone to listen</button>
+              <button class="intent-chip">I need advice</button>
+              <button class="intent-chip">I feel lost</button>
+              <button class="intent-chip">I'm overthinking</button>
+              <button class="intent-chip">I'm dealing with heartbreak</button>
+              <button class="intent-chip">I need encouragement</button>
+              <button class="intent-chip">I need help making a decision</button>
+            </div>
+
+            <!-- Chat dialogue container -->
+            <div class="chat-box">
+              <div id="chat-messages" class="chat-messages" aria-live="polite">
+                <!-- Companion dialogue injected here -->
+              </div>
+
+              <form id="chat-form" class="chat-input-bar">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Type what's on your mind..." autocomplete="off" />
+                <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                <button type="button" id="clear-chat-btn" class="btn-icon" title="Clear chat history">Clear</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: ABOUT UNSPOKEN -->
+      <section id="about" class="section">
+        <div class="container section-narrow">
+          <div class="section-header">
+            <span class="section-kicker">Our Philosophy</span>
+            <h2 class="section-title">A Digital Sanctuary for Unspoken Things</h2>
+            <p class="section-description">
+              UNSPOKEN was designed as a quiet sanctuary away from the noise, performance, and judgment of modern social media.
+            </p>
+          </div>
+
+          <div class="glass-card" style="line-height: 1.8; color: var(--color-text-secondary); font-size: 15px;">
+            <p style="margin-bottom: 16px;">
+              Every day, millions of people walk around carrying heavy feelings they cannot confess to their friends, families, or coworkers. UNSPOKEN gives those words a safe, anonymous place to land.
+            </p>
+            <p style="margin-bottom: 16px;">
+              <strong>Absolute Privacy:</strong> By default, all personal letters and journal entries are kept strictly in your private local space. If you choose to share anonymously with our community, your letter is gently reviewed to ensure our sanctuary remains free of cruelty, harassment, and spam.
+            </p>
+            <p>
+              <strong>Community Care:</strong> We are not licensed medical professionals. If you are experiencing an immediate mental health crisis, please reach out to trusted friends, counselors, or 24/7 crisis hotlines.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">☾ UNSPOKEN</div>
+            <p class="footer-text">
+              “Say what you cannot say. Release what you cannot carry. Find comfort in words from people who understand.”
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Sanctuary</h4>
+            <ul class="footer-links">
+              <li><a href="#release">Release Your Words</a></li>
+              <li><a href="#clouds">Letters in the Clouds</a></li>
+              <li><a href="#advice">Advice Corner</a></li>
+              <li><a href="#unspoken-letters">Letters Never Sent</a></li>
+              <li><a href="#garden">Healing Garden</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Support &amp; Care</h4>
+            <ul class="footer-links">
+              <li><a href="https://988lifeline.org" target="_blank" rel="noopener noreferrer">988 Lifeline (USA)</a></li>
+              <li><a href="https://www.crisistextline.org" target="_blank" rel="noopener noreferrer">Crisis Text Line</a></li>
+              <li><a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer">Find a Helpline (Global)</a></li>
+              <li><a href="https://www.befrienders.org" target="_blank" rel="noopener noreferrer">Befrienders Worldwide</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; UNSPOKEN Sanctuary. Built for quiet hearts everywhere.</span>
+          <span>Deployable via GitHub Pages with Supabase.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- FLOATING LETTER ANIMATION OVERLAY -->
+  <div id="letter-animation-overlay" class="floating-letter-overlay" role="dialog" aria-modal="true" aria-labelledby="letter-animation-comfort">
+    <div class="floating-letter-stage">
+      <div class="letter-envelope">
+        <div class="letter-wax-seal" aria-hidden="true">☾</div>
+        <p id="letter-animation-excerpt" class="letter-excerpt"></p>
+        <div class="letter-stamp">UNSPOKEN</div>
+      </div>
+
+      <p id="letter-animation-comfort" class="letter-comfort-text">
+        You let go of something heavy tonight. May your heart feel a little lighter. ♡
+      </p>
+
+      <button id="letter-dismiss-btn" class="btn btn-secondary letter-dismiss-btn">
+        <span>Return to Sanctuary</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: REPORT CONTENT -->
+  <div id="report-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="report-modal-title" class="modal-title">Report Content</h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <form id="report-form">
+        <div class="form-group">
+          <label for="report-reason" class="form-label">Reason for Report</label>
+          <select id="report-reason" class="form-select">
+            <option value="Inappropriate or abusive content">Inappropriate or abusive content</option>
+            <option value="Harassment or hate speech">Harassment or hate speech</option>
+            <option value="Personal identifiable information (PII)">Personal identifiable information (PII)</option>
+            <option value="Spam or promotional material">Spam or promotional material</option>
+            <option value="Immediate crisis or self-harm concern">Immediate crisis or self-harm concern</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="report-details" class="form-label">Additional Context (Optional)</label>
+          <textarea id="report-details" class="form-textarea" style="min-height: 80px;" placeholder="Help our moderators understand the issue..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger" style="width: 100%;">Submit Confidential Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: BACKEND & MODERATOR INFO -->
+  <div id="backend-info-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="backend-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="backend-modal-title" class="modal-title">Backend Architecture</h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div style="font-size: 14px; line-height: 1.65; color: var(--color-text-secondary);">
+        <p style="margin-bottom: 12px;">
+          <strong>Supabase Shared Database Integration:</strong><br />
+          UNSPOKEN is engineered to run seamlessly on <strong>GitHub Pages</strong> with zero build step, using the official Supabase JavaScript client.
+        </p>
+        <p style="margin-bottom: 12px;">
+          <strong>Security &amp; Row Level Security (RLS):</strong><br />
+          Anonymous visitors have insert-only access for pending content. Only authenticated administrators with authorized roles can approve public submissions. Anonymous visitors cannot approve content or change moderation flags.
+        </p>
+        <p>
+          <strong>Configuring Supabase:</strong><br />
+          Open <code>script.js</code> and update <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> with your project credentials. Run the provided SQL setup script in your Supabase SQL editor.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FLOWER DETAIL -->
+  <div id="flower-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="flower-modal-title">
+    <div class="modal-dialog" style="text-align: center;">
+      <div class="modal-header">
+        <h3 id="flower-modal-title" class="modal-title" style="margin: 0 auto; color: var(--color-gentle-gold);">🌸 A Quiet Blossom</h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <p id="flower-modal-category" style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-lavender); margin-bottom: 14px;"></p>
+      <p id="flower-modal-text" style="font-family: var(--font-serif); font-size: 21px; line-height: 1.6; color: var(--color-cloud-white); margin-bottom: 24px;"></p>
+      <button class="btn btn-secondary btn-sm modal-close-btn">Close</button>
+    </div>
+  </div>
+
+  <!-- MODAL: PRIVATE ARCHIVE -->
+  <div id="private-archive-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="archive-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="archive-modal-title" class="modal-title">My Private Archive</h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+        These letters never left your browser. They are encrypted in your local storage and visible only on this device.
+      </p>
+      <div id="private-archive-list" style="max-height: 50vh; overflow-y: auto;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
